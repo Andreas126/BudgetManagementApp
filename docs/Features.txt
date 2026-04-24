@@ -1,0 +1,27 @@
+Functionalitati:
+- Import (csv/excel)
+- CRUD plati (Suma, data si ora, tip - card/cash/transfer,  beneficiar)
+- filtrare
+- setare venit lunar + bani ramasi pe luna curenta
+- separare pe categorii (Entertainment, Food etc.)
+- cheltuieli lunare (in fiecare luna se adauga o plata automat)
+- economii + obiective (ex. Vreau sa strang 5000 RON pentru vacanta)
+Nice to have:
+- parte de investitii (mutare funduri din economii in investitii si setare expected return)
+- statistici grafice
+- notificari
+
+Iteratia 1: 
+- Import
+- CRUD
+- Authentication
+
+Iteratia 2:
+- filtrare
+- setare venit lunar + bani ramasi pe luna curenta
+- cheltuieli lunare (in fiecare luna se adauga o plata automat)
+
+Iteratia 3:
+- separare pe categorii (Entertainment, Food etc.)
+- economii + obiective (ex. Vreau sa strang 5000 RON pentru vacanta)
+- nice to have features
