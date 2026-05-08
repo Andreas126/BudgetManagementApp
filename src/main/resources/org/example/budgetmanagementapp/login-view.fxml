@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" styleClass="login-root"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.budgetmanagementapp.controller.LoginController">
+    <padding>
+        <Insets bottom="40.0" left="60.0" right="60.0" top="40.0"/>
+    </padding>
+
+    <Label text="Budget Insight" styleClass="app-title">
+        <font>
+            <Font size="28.0"/>
+        </font>
+    </Label>
+
+    <Label text="Autentificare" styleClass="login-subtitle">
+        <font>
+            <Font size="16.0"/>
+        </font>
+    </Label>
+
+    <VBox spacing="5.0" styleClass="form-group">
+        <Label text="Username" styleClass="field-label"/>
+        <TextField fx:id="usernameField" promptText="Introduceti username-ul" styleClass="text-input"/>
+    </VBox>
+
+    <VBox spacing="5.0" styleClass="form-group">
+        <Label text="Parola" styleClass="field-label"/>
+        <PasswordField fx:id="passwordField" promptText="Introduceti parola" styleClass="text-input"/>
+    </VBox>
+
+    <Label fx:id="errorLabel" styleClass="error-label" text=""/>
+
+    <HBox spacing="10.0" alignment="CENTER">
+        <Button text="Autentificare" onAction="#onLogin" styleClass="btn-primary" prefWidth="150"/>
+        <Button text="Inregistrare" onAction="#onRegister" styleClass="btn-secondary" prefWidth="150"/>
+    </HBox>
+</VBox>
