@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane styleClass="main-root"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.budgetmanagementapp.controller.PlataController">
+
+    <!-- Header -->
+    <top>
+        <HBox spacing="15.0" alignment="CENTER_LEFT" styleClass="header-bar">
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0"/>
+            </padding>
+            <Label text="Budget Insight" styleClass="header-title">
+                <font>
+                    <Font size="22.0"/>
+                </font>
+            </Label>
+            <HBox HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userLabel" text="Utilizator: -" styleClass="user-info"/>
+            <Button text="Deconectare" onAction="#onLogout" styleClass="btn-logout"/>
+        </HBox>
+    </top>
+
+    <!-- Center: Table -->
+    <center>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+
+            <Label text="Platile mele" styleClass="section-title">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Label>
+
+            <TableView fx:id="platiTable" VBox.vgrow="ALWAYS" styleClass="plati-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="colSuma" text="Suma (RON)" prefWidth="120"/>
+                    <TableColumn fx:id="colDataOra" text="Data si ora" prefWidth="170"/>
+                    <TableColumn fx:id="colTip" text="Tip" prefWidth="100"/>
+                    <TableColumn fx:id="colBeneficiar" text="Beneficiar" prefWidth="200"/>
+                    <TableColumn fx:id="colCategorie" text="Categorie" prefWidth="130"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Bottom: Action buttons -->
+    <bottom>
+        <HBox spacing="10.0" alignment="CENTER" styleClass="action-bar">
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0"/>
+            </padding>
+            <Button text="+ Adauga plata" onAction="#onAddPlata" styleClass="btn-primary"/>
+            <Button text="Modifica" onAction="#onEditPlata" styleClass="btn-secondary"/>
+            <Button text="Sterge" onAction="#onDeletePlata" styleClass="btn-danger"/>
+            <HBox HBox.hgrow="ALWAYS"/>
+            <Button text="Import CSV" onAction="#onImportCsv" styleClass="btn-import"/>
+        </HBox>
+    </bottom>
+</BorderPane>
