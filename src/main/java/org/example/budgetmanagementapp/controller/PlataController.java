@@ -18,6 +18,7 @@ import org.example.budgetmanagementapp.domain.User;
 import org.example.budgetmanagementapp.repository.JdbcPlataRepository;
 import org.example.budgetmanagementapp.service.CsvImportService;
 import org.example.budgetmanagementapp.service.PlataService;
+import javafx.collections.transformation.FilteredList;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +39,16 @@ public class PlataController {
     @FXML private TableColumn<Plata, String> colBeneficiar;
     @FXML private TableColumn<Plata, String> colCategorie;
     @FXML private Label userLabel;
+
+    @FXML private TextField searchField;
+    @FXML private ComboBox<String> categoryFilterCombo;
+    @FXML private ComboBox<String> typeFilterCombo;
+    @FXML private TextField minSumaField;
+    @FXML private TextField maxSumaField;
+    @FXML private DatePicker startDatePicker;
+    @FXML private DatePicker endDatePicker;
+
+    private FilteredList<Plata> filteredPlati;
 
     private final PlataService plataService;
     private final CsvImportService csvImportService;
@@ -68,8 +79,34 @@ public class PlataController {
             new SimpleStringProperty(data.getValue().getCategorie() != null ?
                 data.getValue().getCategorie().name() : ""));
 
-        platiTable.setItems(platiData);
+        // Initializare FilteredList legata de platiData
+        filteredPlati = new FilteredList<>(platiData, p -> true);
+        platiTable.setItems(filteredPlati);
         platiTable.setPlaceholder(new Label("Nu exista plati inregistrate"));
+
+        // Populare ComboBox-uri de filtrare (fara diacritice)
+        categoryFilterCombo.getItems().add("Toate categoriile");
+        for (Category cat : Category.values()) {
+            categoryFilterCombo.getItems().add(cat.name());
+        }
+        categoryFilterCombo.setValue("Toate categoriile");
+
+        typeFilterCombo.getItems().add("Toate tipurile");
+        for (TipPlata tip : TipPlata.values()) {
+            typeFilterCombo.getItems().add(tip.name());
+        }
+        typeFilterCombo.setValue("Toate tipurile");
+
+        // Adaugare ascultatori pentru filtrare in timp real (Randul 1)
+        searchField.textProperty().addListener((obs, vechi, nou) -> updateFilters());
+        categoryFilterCombo.valueProperty().addListener((obs, vechi, nou) -> updateFilters());
+        typeFilterCombo.valueProperty().addListener((obs, vechi, nou) -> updateFilters());
+
+        // Adaugare ascultatori pentru filtrare in timp real (Randul 2)
+        minSumaField.textProperty().addListener((obs, vechi, nou) -> updateFilters());
+        maxSumaField.textProperty().addListener((obs, vechi, nou) -> updateFilters());
+        startDatePicker.valueProperty().addListener((obs, vechi, nou) -> updateFilters());
+        endDatePicker.valueProperty().addListener((obs, vechi, nou) -> updateFilters());
     }
 
     public void setCurrentUser(User user) {
@@ -282,5 +319,108 @@ public class PlataController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    private void updateFilters() {
+        String searchText = searchField.getText().toLowerCase().trim();
+        String selectedCategory = categoryFilterCombo.getValue();
+        String selectedType = typeFilterCombo.getValue();
+
+        // Citire si parsare limite sume
+        Double minSuma = null;
+        Double maxSuma = null;
+        try {
+            if (!minSumaField.getText().trim().isEmpty()) {
+                minSuma = Double.parseDouble(minSumaField.getText().trim().replace(",", "."));
+            }
+        } catch (NumberFormatException e) {
+            // Ignoram formatul gresit in timpul tastarii
+        }
+        try {
+            if (!maxSumaField.getText().trim().isEmpty()) {
+                maxSuma = Double.parseDouble(maxSumaField.getText().trim().replace(",", "."));
+            }
+        } catch (NumberFormatException e) {
+            // Ignoram formatul gresit in timpul tastarii
+        }
+
+        // Citire limite date
+        java.time.LocalDate startDate = startDatePicker.getValue();
+        java.time.LocalDate endDate = endDatePicker.getValue();
+
+        final Double finalMinSuma = minSuma;
+        final Double finalMaxSuma = maxSuma;
+
+        filteredPlati.setPredicate(plata -> {
+            // 1. Filtrare dupa text (Beneficiar)
+            if (!searchText.isEmpty()) {
+                if (plata.getBeneficiar() == null || 
+                    !plata.getBeneficiar().toLowerCase().contains(searchText)) {
+                    return false;
+                }
+            }
+
+            // 2. Filtrare dupa categorie
+            if (selectedCategory != null && !selectedCategory.equals("Toate categoriile")) {
+                if (plata.getCategorie() == null || 
+                    !plata.getCategorie().name().equals(selectedCategory)) {
+                    return false;
+                }
+            }
+
+            // 3. Filtrare dupa tip plata
+            if (selectedType != null && !selectedType.equals("Toate tipurile")) {
+                if (plata.getTip() == null || 
+                    !plata.getTip().name().equals(selectedType)) {
+                    return false;
+                }
+            }
+
+            // 4. Filtrare dupa Suma Minima
+            if (finalMinSuma != null) {
+                if (plata.getSuma() == null || 
+                    plata.getSuma().doubleValue() < finalMinSuma) {
+                    return false;
+                }
+            }
+
+            // 5. Filtrare dupa Suma Maxima
+            if (finalMaxSuma != null) {
+                if (plata.getSuma() == null || 
+                    plata.getSuma().doubleValue() > finalMaxSuma) {
+                    return false;
+                }
+            }
+
+            // 6. Filtrare dupa Data de inceput
+            if (startDate != null) {
+                if (plata.getDataOra() == null || 
+                    plata.getDataOra().toLocalDate().isBefore(startDate)) {
+                    return false;
+                }
+            }
+
+            // 7. Filtrare dupa Data de sfarsit
+            if (endDate != null) {
+                if (plata.getDataOra() == null || 
+                    plata.getDataOra().toLocalDate().isAfter(endDate)) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
+    }
+
+    @FXML
+    public void onResetFilters() {
+        searchField.clear();
+        categoryFilterCombo.setValue("Toate categoriile");
+        typeFilterCombo.setValue("Toate tipurile");
+        minSumaField.clear();
+        maxSumaField.clear();
+        startDatePicker.setValue(null);
+        endDatePicker.setValue(null);
+        filteredPlati.setPredicate(p -> true);
     }
 }

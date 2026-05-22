@@ -1,22 +1,44 @@
+# =========================================================================
 # Gradle
-.gradle
+# =========================================================================
+.gradle/
 build/
+/build/
 !gradle/wrapper/gradle-wrapper.jar
 
+# =========================================================================
 # IntelliJ IDEA
+# =========================================================================
 .idea/
 *.iws
 *.iml
 *.ipr
 out/
 
-# Database credentials (IMPORTANT: fill in db.properties locally, don't push to GitHub)
-src/main/resources/db.properties
+# =========================================================================
+# VS Code
+# =========================================================================
+.vscode/
 
-# OS specific
+# =========================================================================
+# Fisiere specifice sistemului de operare (OS specific)
+# =========================================================================
 .DS_Store
-thumbs.db
+Thumbs.db
 desktop.ini
 
-# Logs
+# =========================================================================
+# Fisiere de log-uri si crash dump-uri
+# =========================================================================
 *.log
+hs_err_pid*.log
+replay_pid*.log
+
+# =========================================================================
+# Fisiere locale de configurare / Credentiale baza de date (securitate)
+# =========================================================================
+# Credentialele locale pentru baza de date - NU trebuie incarcate pe GitHub
+src/main/resources/db.properties
+.env
+.env.local
+.env.*.local

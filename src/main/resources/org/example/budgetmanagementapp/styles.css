@@ -157,7 +157,9 @@
     -fx-background-radius: 8;
 }
 
-.plati-table .column-header-background {
+.plati-table .column-header-background,
+.plati-table .column-header-background .filler,
+.plati-table .corner {
     -fx-background-color: #16213e;
 }
 
@@ -225,6 +227,146 @@
 }
 
 .dialog-pane .button-bar .btn-primary {
+    -fx-background-color: #e94560;
+    -fx-text-fill: white;
+}
+
+/* ===== FILTERS EXPENDED BAR ===== */
+.filter-container {
+    -fx-background-color: #16213e;
+    -fx-border-color: #2a2a4a;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 12 15;
+}
+
+.filter-label {
+    -fx-text-fill: #a8a8b3;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.filter-field {
+    -fx-background-color: #1a1a3e;
+    -fx-text-fill: #e0e0e0;
+    -fx-border-color: #3a3a5c;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-prompt-text-fill: #6c6c80;
+    -fx-font-size: 13px;
+}
+
+.filter-field:focused {
+    -fx-border-color: #e94560;
+    -fx-background-color: #22223a;
+}
+
+.filter-combo {
+    -fx-background-color: #1a1a3e;
+    -fx-mark-color: #e0e0e0;
+    -fx-border-color: #3a3a5c;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 4 8;
+    -fx-font-size: 13px;
+}
+
+.filter-combo > .list-cell,
+.filter-combo .label {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: transparent;
+}
+
+.filter-combo:showing {
+    -fx-border-color: #e94560;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1a1a3e;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 8, 0, 0, 4);
+    -fx-border-color: #3a3a5c;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #1a1a3e;
+    -fx-text-fill: #e0e0e0;
+    -fx-padding: 6 10;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #2a2a4a;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #e94560;
+    -fx-text-fill: white;
+}
+
+.filter-field-small {
+    -fx-background-color: #1a1a3e;
+    -fx-text-fill: #e0e0e0;
+    -fx-border-color: #3a3a5c;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10;
+    -fx-prompt-text-fill: #6c6c80;
+    -fx-font-size: 12px;
+}
+
+.filter-field-small:focused {
+    -fx-border-color: #e94560;
+    -fx-background-color: #22223a;
+}
+
+/* DatePicker Styling */
+.filter-datepicker {
+    -fx-background-color: #1a1a3e;
+    -fx-border-color: #3a3a5c;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 12px;
+}
+
+.filter-datepicker .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #6c6c80;
+    -fx-padding: 6 10;
+}
+
+.filter-datepicker .button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.filter-datepicker .button:hover {
+    -fx-background-color: #2a2a4a;
+}
+
+.filter-datepicker .arrow {
+    -fx-background-color: #e94560;
+}
+
+/* Reset button */
+.btn-reset-filters {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e94560;
+    -fx-border-color: #e94560;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+    -fx-cursor: hand;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.btn-reset-filters:hover {
     -fx-background-color: #e94560;
     -fx-text-fill: white;
 }
