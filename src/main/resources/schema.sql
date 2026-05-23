@@ -35,3 +35,17 @@ CREATE INDEX IF NOT EXISTS idx_plati_data_ora ON plati(data_ora);
 INSERT INTO users (username, password, venit_lunar)
 VALUES ('admin', 'admin', 5000.00)
 ON CONFLICT (username) DO NOTHING;
+
+-- Tabela: cheltuieli_recurente
+CREATE TABLE IF NOT EXISTS cheltuieli_recurente (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    suma DECIMAL(15, 2) NOT NULL,
+    tip VARCHAR(20) NOT NULL CHECK (tip IN ('CARD', 'CASH', 'TRANSFER')),
+    beneficiar VARCHAR(255) NOT NULL,
+    categorie VARCHAR(50) NOT NULL CHECK (categorie IN ('FOOD', 'ENTERTAINMENT', 'TRANSPORT', 'UTILITIES', 'HEALTH', 'OTHERS')),
+    zi_luna INT NOT NULL CHECK (zi_luna >= 1 AND zi_luna <= 31),
+    ultima_procesare DATE,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+

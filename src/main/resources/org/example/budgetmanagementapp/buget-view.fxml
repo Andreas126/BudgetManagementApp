@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="20.0" VBox.vgrow="ALWAYS"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.budgetmanagementapp.controller.BugetController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Bugetul meu" styleClass="section-title">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+
+    <!-- HBox pentru Cardurile de Buget -->
+    <HBox spacing="20.0" styleClass="budget-cards-container">
+        <!-- Card Venit Lunar -->
+        <VBox spacing="10.0" styleClass="budget-card, card-income" HBox.hgrow="ALWAYS">
+            <Label text="Venit Lunar (RON)" styleClass="card-label"/>
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <TextField fx:id="venitField" prefWidth="120.0" styleClass="venit-input-field"/>
+                <Button text="Seteaza" onAction="#onSetVenit" styleClass="btn-action-small"/>
+            </HBox>
+        </VBox>
+
+        <!-- Card Bani Cheltuiti -->
+        <VBox spacing="10.0" styleClass="budget-card, card-expenses" HBox.hgrow="ALWAYS">
+            <Label text="Cheltuit in luna curenta" styleClass="card-label"/>
+            <Label fx:id="cheltuitLabel" text="0.00 RON" styleClass="card-value"/>
+        </VBox>
+
+        <!-- Card Bani Ramasi -->
+        <VBox spacing="10.0" styleClass="budget-card, card-remaining" fx:id="remainingCard" HBox.hgrow="ALWAYS">
+            <Label text="Bani ramasi" styleClass="card-label"/>
+            <Label fx:id="ramasiLabel" text="0.00 RON" styleClass="card-value"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+        <Label text="Cheltuieli Recurente (Lunare)" styleClass="section-title">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        
+        <TableView fx:id="recurenteTable" VBox.vgrow="ALWAYS" styleClass="plati-table">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colSuma" text="Suma (RON)" prefWidth="120"/>
+                <TableColumn fx:id="colTip" text="Tip Plata" prefWidth="100"/>
+                <TableColumn fx:id="colBeneficiar" text="Beneficiar" prefWidth="200"/>
+                <TableColumn fx:id="colCategorie" text="Categorie" prefWidth="130"/>
+                <TableColumn fx:id="colZi" text="Zi din Luna" prefWidth="100"/>
+                <TableColumn fx:id="colUltimaProcesare" text="Ultima Procesare" prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="10.0" alignment="CENTER_LEFT" styleClass="action-bar">
+            <padding>
+                <Insets top="10.0"/>
+            </padding>
+            <Button text="+ Adauga Recurenta" onAction="#onAddRecurenta" styleClass="btn-primary"/>
+            <Button text="Sterge Recurenta" onAction="#onDeleteRecurenta" styleClass="btn-danger"/>
+        </HBox>
+    </VBox>
+</VBox>

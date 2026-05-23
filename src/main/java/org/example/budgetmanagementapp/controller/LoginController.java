@@ -81,7 +81,7 @@ public class LoginController {
             scene.getStylesheets().add(
                 getClass().getResource("/org/example/budgetmanagementapp/styles.css").toExternalForm());
 
-            PlataController controller = loader.getController();
+            MainController controller = loader.getController();
             controller.setCurrentUser(user);
 
             Stage mainStage = new Stage();

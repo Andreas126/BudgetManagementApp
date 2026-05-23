@@ -370,3 +370,137 @@
     -fx-background-color: #e94560;
     -fx-text-fill: white;
 }
+
+/* ===== SIDE MENU STYLING ===== */
+.side-menu {
+    -fx-background-color: #1a1a2e;
+    -fx-border-color: transparent #2a2a4a transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.side-menu-title {
+    -fx-text-fill: #e94560;
+    -fx-font-weight: bold;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a8a8b3;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 15;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-pref-width: 190;
+}
+
+.nav-btn:hover {
+    -fx-background-color: #22223a;
+    -fx-text-fill: #e0e0e0;
+}
+
+.nav-active {
+    -fx-background-color: #e94560;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.nav-active:hover {
+    -fx-background-color: #d63851;
+    -fx-text-fill: white;
+}
+
+.user-section {
+    -fx-border-color: #2a2a4a transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 15 0 0 0;
+}
+
+.content-area {
+    -fx-background-color: #0f0f23;
+}
+
+/* ===== BUDGET CARDS STYLING ===== */
+.budget-cards-container {
+    -fx-padding: 10 0;
+}
+
+.budget-card {
+    -fx-background-color: #1a1a2e;
+    -fx-border-color: #2a2a4a;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 15 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 5, 0, 0, 2);
+}
+
+.card-label {
+    -fx-text-fill: #a8a8b3;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.card-value {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.card-income {
+    -fx-border-color: #2a2a4a #2a2a4a #2a2a4a #e94560;
+    -fx-border-width: 1 1 1 4;
+}
+
+.card-expenses {
+    -fx-border-color: #2a2a4a #2a2a4a #2a2a4a #ffc107;
+    -fx-border-width: 1 1 1 4;
+}
+
+.card-success {
+    -fx-border-color: #2a2a4a #2a2a4a #2a2a4a #2ed573;
+    -fx-border-width: 1 1 1 4;
+}
+
+.card-success .card-value {
+    -fx-text-fill: #2ed573;
+}
+
+.card-danger {
+    -fx-border-color: #2a2a4a #2a2a4a #2a2a4a #ff4757;
+    -fx-border-width: 1 1 1 4;
+}
+
+.card-danger .card-value {
+    -fx-text-fill: #ff4757;
+}
+
+.venit-input-field {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #3a3a5c;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.venit-input-field:focused {
+    -fx-border-color: #e94560;
+}
+
+.btn-action-small {
+    -fx-background-color: #e94560;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 6 12;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.btn-action-small:hover {
+    -fx-background-color: #d63851;
+}
+

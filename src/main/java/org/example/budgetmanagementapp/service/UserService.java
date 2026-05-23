@@ -48,4 +48,9 @@ public class UserService {
             throw new RuntimeException("Eroare la hashing-ul parolei", e);
         }
     }
+
+    public void updateVenitLunar(Long id, java.math.BigDecimal venit) {
+        userRepository.updateVenitLunar(id, venit);
+    }
 }
+

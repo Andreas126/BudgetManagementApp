@@ -111,7 +111,9 @@ public class PlataController {
 
     public void setCurrentUser(User user) {
         this.currentUser = user;
-        userLabel.setText("Utilizator: " + user.getUsername());
+        if (userLabel != null) {
+            userLabel.setText("Utilizator: " + user.getUsername());
+        }
         refreshTable();
     }
 

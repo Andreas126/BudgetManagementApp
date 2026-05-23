@@ -47,4 +47,18 @@ public class JdbcUserRepository implements UserRepository {
         }
         return user;
     }
+
+    @Override
+    public void updateVenitLunar(Long id, BigDecimal venit) {
+        String sql = "UPDATE users SET venit_lunar = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setBigDecimal(1, venit);
+            stmt.setLong(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Eroare la actualizarea venitului lunar", e);
+        }
+    }
 }
+
